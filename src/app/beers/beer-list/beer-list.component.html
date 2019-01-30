@@ -1,0 +1,46 @@
+<div class="form-group row mt-3">
+  <label class="col-1 font-weight-bold">Sort By: </label>
+  <div class="col-3">
+    <form>
+      <select class="custom-select" [(ngModel)]="firstsort" name="sortfeild" (click)="primarySort()">
+        <option value="{{sort.value}}" *ngFor="let sort of sorts">{{sort.name}}</option>
+
+      </select>
+    </form>
+  </div>
+
+  <div class="col-3">
+    <form>
+      <select class="custom-select" [(ngModel)]="secondsort" name="secondsort" (click)="secondarySort()">
+        <option value="{{sort.value}}" *ngFor="let sort of sorts">{{sort.name}}</option>
+      </select>
+    </form>
+  </div>
+</div>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Brewery Name</th>
+      <th>Brewery Type</th>
+      <th>Street</th>
+      <th>City</th>
+      <th>State</th>
+      <th>Country</th>
+      <th>Phone</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let beer of beerList" (click)="getbeerDetails(beer.id)">
+      <td>{{beer.name}}</td>
+      <td>{{beer.brewery_type}}</td>
+      <td>{{beer.street}}</td>
+      <td>{{beer.city}}</td>
+      <td>{{beer.state}}</td>
+      <td>{{beer.country}}</td>
+      <td>{{beer.phone}}</td>
+    </tr>
+  </tbody>
+
+</table>
