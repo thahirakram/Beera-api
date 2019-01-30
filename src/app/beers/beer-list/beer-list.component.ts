@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 export class BeerListComponent implements OnInit {
   beerList = [];
   sortfeild: string;
-  firstsort: string;
+  selectedPrimarySort = 'name';
   secondsort: string;
 
   sorts = [
@@ -20,7 +20,7 @@ export class BeerListComponent implements OnInit {
     },
     {
       name: 'BreweryType',
-      value:  'brewery_type'
+      value: 'brewery_type'
     },
     {
       name: 'City',
@@ -29,18 +29,19 @@ export class BeerListComponent implements OnInit {
     {
       name: 'State',
       value: 'state'
-    }, 
+    },
     {
       name: 'Country',
       value: 'country'
     }
   ];
 
+
   constructor(private beerServ: BeerServiceService,
     private router: Router) {
-    this.firstsort = 'name';
     this.getBeerlist();
   }
+
 
   getbeerDetails(id) {
     this.router.navigate(['/beers', id, 'edit']);
@@ -57,7 +58,7 @@ export class BeerListComponent implements OnInit {
   }
 
   getBeerlist() {
-    this.sortfeild = this.firstsort;
+    this.sortfeild = this.selectedPrimarySort;
     if (this.secondsort) {
       this.sortfeild += ',' + this.secondsort;
     }
@@ -70,7 +71,7 @@ export class BeerListComponent implements OnInit {
 
 
   ngOnInit() {
-    
+
   }
 
 }

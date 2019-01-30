@@ -2,8 +2,8 @@
   <label class="col-1 font-weight-bold">Sort By: </label>
   <div class="col-3">
     <form>
-      <select class="custom-select" [(ngModel)]="firstsort" name="sortfeild" (click)="primarySort()">
-        <option value="{{sort.value}}" *ngFor="let sort of sorts">{{sort.name}}</option>
+      <select class="custom-select" [(ngModel)]="selectedPrimarySort" name="sortfeild" (click)="primarySort()">
+        <option [value]="sort.value" *ngFor="let sort of sorts">{{sort.name}}</option>
 
       </select>
     </form>
@@ -12,7 +12,9 @@
   <div class="col-3">
     <form>
       <select class="custom-select" [(ngModel)]="secondsort" name="secondsort" (click)="secondarySort()">
-        <option value="{{sort.value}}" *ngFor="let sort of sorts">{{sort.name}}</option>
+        <ng-container *ngFor="let sort of sorts">
+          <option [value]="sort.value" *ngIf="sort.value !== selectedPrimarySort">{{sort.name}}</option>
+        </ng-container>
       </select>
     </form>
   </div>
