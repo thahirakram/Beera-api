@@ -14,6 +14,8 @@ export class BeerListComponent implements OnInit {
   secondsort: string;
   search: string;
 
+  
+
   sorts = [
     {
       name: 'BreweryName',
