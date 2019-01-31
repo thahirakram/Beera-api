@@ -12,6 +12,7 @@ export class BeerListComponent implements OnInit {
   sortfeild: string;
   selectedPrimarySort = 'name';
   secondsort: string;
+  search: string;
 
   sorts = [
     {
@@ -43,26 +44,21 @@ export class BeerListComponent implements OnInit {
   }
 
 
+
   getbeerDetails(id) {
     this.router.navigate(['/beers', id, 'edit']);
   }
 
-  primarySort() {
-
-    this.getBeerlist();
-  }
-
-  secondarySort() {
-
+  handlesearch() {
     this.getBeerlist();
   }
 
   getBeerlist() {
     this.sortfeild = this.selectedPrimarySort;
-    if (this.secondsort) {
+    if (this.secondsort && this.secondsort != this.selectedPrimarySort) {
       this.sortfeild += ',' + this.secondsort;
     }
-    this.beerServ.getbeerList(this.sortfeild)
+    this.beerServ.getbeerList(this.sortfeild, this.search)
       .subscribe((data: any) => {
         console.log(data);
         this.beerList = data;

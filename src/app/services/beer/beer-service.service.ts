@@ -9,10 +9,13 @@ export class BeerServiceService {
   constructor(private http: HttpClient) { }
 
 
-  getbeerList(sortfeild) {
-    let url = `https://api.openbrewerydb.org/breweries`;
+  getbeerList(sortfeild, search) {
+    if (!search) {
+      search = '';
+    }
+    let url = `https://api.openbrewerydb.org/breweries?by_name=${search}`;
     if (sortfeild) {
-      url += `?sort=${sortfeild}`;
+      url += `&sort=${sortfeild}`;
     }
     return this.http.get(url);
   }
@@ -21,6 +24,5 @@ export class BeerServiceService {
     const url = `https://api.openbrewerydb.org/breweries/${id}`;
     return this.http.get(url);
   }
-
 
 }
